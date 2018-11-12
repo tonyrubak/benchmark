@@ -89,8 +89,8 @@ function advance!(bodies, dt)
         end
     end
     for i in 1:num_bodies
-        @simd for j in 1:3
-            @inbounds bodies[j,i] = bodies[j,i] + dt * bodies[j+3,i]
+        for k in 1:3
+            @inbounds bodies[k,i] = bodies[k,i] + dt * bodies[k+3,i]
         end
     end
 end
