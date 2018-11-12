@@ -71,8 +71,8 @@ function advance!(bodies, dt)
     dsq = 0.
     dist = 0.
     mag = 0.
-    for i in 1:num_bodies
-        for j in i+1:num_bodies
+    @inbounds for i in 1:num_bodies
+        @inbounds for j in i+1:num_bodies
             dx = bodies[1,i] - bodies[1,j]
             dy = bodies[2,i] - bodies[2,j]
             dz = bodies[3,i] - bodies[3,j]
@@ -88,7 +88,7 @@ function advance!(bodies, dt)
             bodies[6,j] = bodies[6,j] + dz * bodies[7,i] * mag
         end
     end
-    for i in 1:num_bodies
+    @inbounds @simd for i in 1:num_bodies
         bodies[1,i] = bodies[1,i] + dt * bodies[4,i]
         bodies[2,i] = bodies[2,i] + dt * bodies[5,i]
         bodies[3,i] = bodies[3,i] + dt * bodies[6,i]

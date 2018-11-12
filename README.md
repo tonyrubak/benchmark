@@ -16,5 +16,5 @@ sys	0m0.004s
 julia> @time run_sim(50000000)
 -0.169075164
 -0.169059907
-  5.175074 seconds (100 allocations: 6.500 KiB)
+  4.694161 seconds (100 allocations: 6.500 KiB)
 ```
