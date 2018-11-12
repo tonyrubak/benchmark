@@ -21,7 +21,7 @@ julia> @time run_sim(50000000)
 
 ## binary-trees/trees.jl
 ```bash
-~/benchmark_reference/gpp$ ./binarytrees.gpp-9.gpp_run 21
+~/benchmark_reference/gpp$ time ./binarytrees.gpp-9.gpp_run 21
 stretch tree of depth 22	 check: 8388607
 2097152	 trees of depth 4	 check: 65011712
 524288	 trees of depth 6	 check: 66584576
@@ -33,6 +33,10 @@ stretch tree of depth 22	 check: 8388607
 128	 trees of depth 18	 check: 67108736
 32	 trees of depth 20	 check: 67108832
 long lived tree of depth 21	 check: 4194303
+
+real	0m1.041s
+user	0m5.661s
+sys	0m0.110s
 ```
 ```julia
 julia> @time run_benchmark(21)
