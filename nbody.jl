@@ -88,10 +88,10 @@ function advance!(bodies, dt)
             bodies[6,j] = bodies[6,j] + dz * bodies[7,i] * mag
         end
     end
-    @inbounds @simd for i in 1:num_bodies
-        bodies[1,i] = bodies[1,i] + dt * bodies[4,i]
-        bodies[2,i] = bodies[2,i] + dt * bodies[5,i]
-        bodies[3,i] = bodies[3,i] + dt * bodies[6,i]
+    for i in 1:num_bodies
+        @simd for j in 1:3
+            @inbounds bodies[j,i] = bodies[j,i] + dt * bodies[j+3,i]
+        end
     end
 end
 
