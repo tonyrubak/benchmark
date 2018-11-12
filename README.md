@@ -51,5 +51,5 @@ stretch tree of depth 22	 check: 8388607
 128 trees of depth 18	 check: 67108736
 32 trees of depth 20	 check: 67108832
 long lived tree of depth 21	 check: 4194303
-  4.494689 seconds (34.40 k allocations: 44.990 MiB, 0.21% gc time)
+  3.895489 seconds (32.05 k allocations: 44.848 MiB, 0.22% gc time)
 ```
