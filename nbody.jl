@@ -56,7 +56,7 @@ end
 
 function offset_momentum!(bodies)
     px = py = pz = 0.
-    for i in 1:num_planets
+    for i in 1:num_bodies
         px += bodies[4,i] * bodies[7,i]
         py += bodies[5,i] * bodies[7,i]
         pz += bodies[6,i] * bodies[7,i]
