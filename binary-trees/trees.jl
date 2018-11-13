@@ -9,7 +9,7 @@ function run_benchmark(max_depth)
 
     stretch_depth = max_depth + 1
 
-    pool = Pool(300000000, TreeNode)
+    pool = Pool(0x0000000010000000, TreeNode)
 
     println("stretch tree of depth $stretch_depth\t check: $(make_check((0,stretch_depth), pool))")
 

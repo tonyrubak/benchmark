@@ -55,7 +55,7 @@ function get_argchunks(i, d, chunksize = 5000)
 end
 
 function worker_make_check(chunk)
-    pool = Pool(300000000, TreeNode)
+    pool = Pool(0x0000000010000000, TreeNode)
     cs = 0
     for pair in chunk
         cs += make_check(pair, pool)

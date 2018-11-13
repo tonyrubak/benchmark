@@ -5,9 +5,8 @@ mutable struct Pool{T}
     next::UInt64
 end
 
-function Pool(capacity, T)
+function Pool(capacity::UInt64, T)
     sz = UInt64(sizeof(T))
-    capacity = UInt64(capacity)
     ptr = Libc.malloc(sz*capacity)
     @assert ptr != C_NULL
     Pool{T}(ptr, sz, capacity, 0x000000000)
