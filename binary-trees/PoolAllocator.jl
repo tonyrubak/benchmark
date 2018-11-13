@@ -19,7 +19,7 @@ end
 
 function alloc(pool::Pool{T}) where {T}
     @assert pool.next < pool.capacity
-    objptr = pool.ptr + pool.next
-    pool.next += pool.sz
+    objptr = pool.ptr + (pool.next * pool.sz)
+    pool.next += 1
     convert(Ptr{T}, objptr)
 end
