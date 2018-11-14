@@ -1,7 +1,7 @@
 using Distributed
+using MemoryArena
 
-@everywhere include("tree_worker_pool.jl")
-@everywhere include("PoolAllocator.jl")
+@everywhere include("tree_worker_arena.jl")
 
 function run_benchmark(max_depth)
     min_depth = 4
@@ -9,11 +9,11 @@ function run_benchmark(max_depth)
 
     stretch_depth = max_depth + 1
 
-    pool = Pool(0x0000000010000000, TreeNode)
+    arena = TypedArena{TreeNode}()
 
-    println("stretch tree of depth $stretch_depth\t check: $(make_check((0,stretch_depth), pool))")
+    println("stretch tree of depth $stretch_depth\t check: $(make_check((0,stretch_depth), arena))")
 
-    long_lived_tree = create_tree(max_depth, pool)
+    long_lived_tree = create_tree(max_depth, arena)
 
     mmd = max_depth + min_depth
     for d in range(min_depth, step = 2, stop = max_depth)
@@ -25,5 +25,5 @@ function run_benchmark(max_depth)
     end
 
     println("long lived tree of depth $max_depth\t check: $(check_tree(long_lived_tree))")
-    destroy(pool)
+    destroy(arena)
 end
