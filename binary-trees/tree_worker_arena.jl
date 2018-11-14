@@ -54,7 +54,7 @@ function get_argchunks(i, d, chunksize = 5000)
 end
 
 function worker_make_check(chunk)
-    arena = TypedArena{TreeNode}(UInt64(1000))
+    arena = TypedArena{TreeNode}(UInt64(100000))
     cs = 0
     for pair in chunk
         cs += make_check(pair, arena)
