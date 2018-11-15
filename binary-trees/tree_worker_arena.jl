@@ -36,13 +36,11 @@ function get_argchunks(i, d, chunksize = 5000)
     @assert chunksize % 2 == 0
     num_chunks = i % chunksize == 0 ? div(i, chunksize) :
         div(i, chunksize) + 1
-    chunks = Array{Array{Tuple{Int64,Int64}}}(undef, num_chunks)
+    chunks = fill(Array{Tuple{Int64,Int64}}(undef,chunksize),num_chunks)
     for j in 1:num_chunks-1
-        chunk = Array{Tuple{Int64, Int64}}(undef, chunksize)
         for k in 1:chunksize
-            @inbounds chunk[k] = (k + chunksize*(j-1), d)
+            @inbounds chunks[j][k] = (k + chunksize*(j-1), d)
         end
-        chunks[j] = chunk
     end
         
     chunk = Array{Tuple{Int64, Int64}}(undef, i % chunksize)
